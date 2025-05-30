@@ -171,12 +171,12 @@ jobs:
     runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
-        arch: [amd64]
+        arch: [arm64]
         include:
-          - arch: amd64
-            runs-on: ubuntu-latest
-            artifact-name: nn_linux_puredata_x86_64
-            conda-url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+          - arch: arm64
+            runs-on: ubuntu-24.04-arm
+            artifact-name: nn_linux_puredata_arm
+            conda-url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh
     steps:
       - name: Check out code
         uses: actions/checkout@v2
