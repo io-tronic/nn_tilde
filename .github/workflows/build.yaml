@@ -194,6 +194,7 @@ jobs:
           source ./env/bin/activate
           conda install python=3.11
           pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+          pip3 show torch
           conda install -c conda-forge curl
           # conda install -c pytorch torch==2.5.1 torchaudio==2.5.1
           # pip install -r requirements.txt
