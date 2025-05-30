@@ -1,8 +1,5 @@
 name: Build nn_tilde
-on:
-  push:
-    tags:
-      - "v*"
+on: push
 
 jobs:
   osx-arm64-build:
