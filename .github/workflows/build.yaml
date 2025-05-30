@@ -193,12 +193,23 @@ jobs:
           bash ./miniconda.sh -b -u -p ./env
           source ./env/bin/activate
           conda install python=3.11
-          pip3 install torch --index-url https://download.pytorch.org/whl/cpu
-          pip3 show torch
-          cp -r ${{ github.workspace }}/env/lib/python3.11/site-packages/torch torch
+          # pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+          # pip3 show torch
+          # cp -r ${{ github.workspace }}/env/lib/python3.11/site-packages/torch torch
           conda install -c conda-forge curl
           # conda install -c pytorch torch==2.5.1 torchaudio==2.5.1
           # pip install -r requirements.txt
+      - name: Building Torch
+        run: |
+          git clone -b main --recurse-submodule https://github.com/pytorch/pytorch.git
+          mkdir pytorch-build
+          cd pytorch-build
+          cmake -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release -DPYTHON_EXECUTABLE:PATH=`which python3` -DCMAKE_INSTALL_PREFIX:PATH=../torch ../pytorch
+          cmake --build . --target install
+          cd ..
+          ls -a torch/
+          ls -a torch/libtorch
+          ls -a torch/libtorch/lib
       - name: Setup puredata
         run: |
           mkdir puredata_include
