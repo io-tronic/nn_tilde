@@ -195,6 +195,7 @@ jobs:
           conda install python=3.11
           pip3 install torch --index-url https://download.pytorch.org/whl/cpu
           pip3 show torch
+          cp -r ${{ github.workspace }}/env/lib/python3.11/site-packages/torch torch
           conda install -c conda-forge curl
           # conda install -c pytorch torch==2.5.1 torchaudio==2.5.1
           # pip install -r requirements.txt
@@ -208,7 +209,7 @@ jobs:
           export CC=$(which gcc-10)
           export CXX=$(which g++-10)
           cd build
-          cmake ../src -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_PREFIX_PATH=${{ github.workspace }}/env/lib/python3.12/site-packages/torch -DCMAKE_BUILD_TYPE=Release -DPUREDATA_INCLUDE_DIR=${{ github.workspace }}/puredata_include
+          cmake ../src -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_PREFIX_PATH=${{ github.workspace }}/env/lib/python3.11/site-packages/torch -DCMAKE_BUILD_TYPE=Release -DPUREDATA_INCLUDE_DIR=${{ github.workspace }}/puredata_include
           make
       - name: PureData Package creation
         run: |
