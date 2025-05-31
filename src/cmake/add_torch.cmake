@@ -42,7 +42,7 @@ if (NEEDS_DL)
   message(STATUS "Downloading torch C API pre-built")
   # Download
   if (UNIX AND NOT APPLE)  # Linux
-    set(torch_url "https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-${torch_version}%2Bcpu.zip")
+  set(torch_url "https://github.com/io-tronic/nn_tilde/raw/refs/heads/master/torchbin-pi/raspi-libtorch-install.zip") #set(torch_url "https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-${torch_version}%2Bcpu.zip")
     download_library(${torch_url} ${torch_dir})
   elseif (UNIX AND APPLE)  # OSX
     if (NOT IS_DIRECTORY ${torch_dir})
