@@ -434,35 +434,35 @@ jobs:
             nn_puredata_macos_ub.tar.gz
           
 
-  AutomaticRelease:
-    runs-on: ubuntu-latest
-    needs: [MakeMaxUniversalForMac, MakePdUniversalForMac, linux, windows-x64-build]
-    steps:
-      - name: Download Max build binaries (mac)
-        uses: actions/download-artifact@v4
-        with:
-          name: nn_tilde_macos_max_ub
-      - name: Download Pd binaries (mac)
-        uses: actions/download-artifact@v4
-        with:
-          name: nn_tilde_macos_pd_ub
-      - name: Download build binaries (linux_x86_64)
-        uses: actions/download-artifact@v4
-        with:
-          name: nn_linux_puredata_x86_64
-      - name: Download build binaries (windows mac_x86_64)
-        uses: actions/download-artifact@v4
-        with:
-          name: nn_tilde_win_x64 
-      - name: Automated Release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            nn_max_msp_macos_ub.tar.gz
-            nn_puredata_macos_ub.tar.gz
-            nn_linux_puredata_x86_64.tar.gz
-            nn_max_msp_windows_x64.tar.gz
-            nn_puredata_windows_x64.tar.gz
+  # AutomaticRelease:
+  #   runs-on: ubuntu-latest
+  #   needs: [MakeMaxUniversalForMac, MakePdUniversalForMac, windows-x64-build] #FIXME linux
+  #   steps:
+  #     - name: Download Max build binaries (mac)
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: nn_tilde_macos_max_ub
+  #     - name: Download Pd binaries (mac)
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: nn_tilde_macos_pd_ub
+  #     - name: Download build binaries (linux_x86_64)
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: nn_linux_puredata_x86_64
+  #     - name: Download build binaries (windows mac_x86_64)
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: nn_tilde_win_x64 
+  #     - name: Automated Release
+  #       uses: "marvinpinto/action-automatic-releases@latest"
+  #       with:
+  #         repo_token: "${{ secrets.GITHUB_TOKEN }}"
+  #         prerelease: false
+  #         files: |
+  #           nn_max_msp_macos_ub.tar.gz
+  #           nn_puredata_macos_ub.tar.gz
+  #           nn_linux_puredata_x86_64.tar.gz
+  #           nn_max_msp_windows_x64.tar.gz
+  #           nn_puredata_windows_x64.tar.gz
 
